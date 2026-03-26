@@ -10,8 +10,15 @@ import { MortgageCalculator } from "@/components/MortgageCalculator";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
-const bankLogos = ["Emirates NBD", "Mashreq", "ADCB", "RAKBANK", "HSBC", "FAB"];
-const trustBadges = ["DFSA-aligned advisors", "1500+ funded families", "4.9/5 client rating"];
+const bankLogos = [
+  { name: "Emirates NBD", mark: "EN" },
+  { name: "Mashreq", mark: "MQ" },
+  { name: "ADCB", mark: "AD" },
+  { name: "RAKBANK", mark: "RK" },
+  { name: "HSBC", mark: "HB" },
+  { name: "FAB", mark: "FB" },
+];
+const trustBadges = ["Rates from 3.79%", "Pre-approval in 24-48h", "20+ partner banks"];
 
 const faqs = [
   {
@@ -67,33 +74,93 @@ const testimonialCards = [
   },
 ];
 
+const savingsRows = [
+  {
+    profile: "First-time buyer (AED 2M loan)",
+    bankAverage: "AED 10,480/mo",
+    withUs: "AED 9,420/mo",
+    saved: "AED 1,060/mo",
+  },
+  {
+    profile: "Refinance profile (AED 2.5M)",
+    bankAverage: "AED 13,980/mo",
+    withUs: "AED 12,310/mo",
+    saved: "AED 1,670/mo",
+  },
+  {
+    profile: "Investor profile (AED 3M)",
+    bankAverage: "AED 16,940/mo",
+    withUs: "AED 15,280/mo",
+    saved: "AED 1,660/mo",
+  },
+];
+
+const authorityStats = [
+  { value: "AED 100M+", label: "Mortgages facilitated" },
+  { value: "4.9/5", label: "Client satisfaction Score" },
+  { value: "95%", label: "Application success rate" },
+  { value: "20+", label: "Active banking partners" },
+];
+
+const teamMembers = [
+  { name: "Nikhil M.", role: "Senior Mortgage Advisor" },
+  { name: "Aisha R.", role: "Home Finance Specialist" },
+  { name: "Omar K.", role: "Refinance Consultant" },
+];
+
+const blogHighlights = [
+  {
+    title: "UAE Mortgage Guide 2026",
+    meta: "8 min read",
+    description: "Understand rates, LTV limits, and approval timelines before applying.",
+  },
+  {
+    title: "Refinance vs Balance Transfer",
+    meta: "6 min read",
+    description: "When switching banks can reduce your monthly payment significantly.",
+  },
+  {
+    title: "Buying as a Non-Resident",
+    meta: "7 min read",
+    description: "What lenders check and how to prepare documents for faster processing.",
+  },
+];
+
 export default function Home() {
   return (
     <div className="bg-gradient-to-b from-slate-50 via-white to-white text-slate-900">
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3">
+        <div className="mx-auto flex h-28 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center">
             <Image
-              src="/assets/logos/logo-dark.png"
+              src="/assets/logos/ss-dark-01.png"
               alt="SS Finance"
-              width={36}
-              height={36}
-              className="rounded-md"
+              width={338}
+              height={99}
+              className="h-auto w-[293px] object-contain sm:w-[338px]"
             />
-            <p className="text-sm font-bold tracking-wide text-slate-900">SS Finance</p>
           </div>
           <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
+            <a href="#about" className="hover:text-blue-600">
+              About
+            </a>
             <a href="#finder" className="hover:text-blue-600">
-              AI Finder
+              Calculator
+            </a>
+            <a href="#products" className="hover:text-blue-600">
+              Services
             </a>
             <a href="#how-it-works" className="hover:text-blue-600">
               Process
             </a>
-            <a href="#products" className="hover:text-blue-600">
-              Products
+            <a href="#team" className="hover:text-blue-600">
+              Team
             </a>
-            <a href="#rates" className="hover:text-blue-600">
-              Rates
+            <a href="#blogs" className="hover:text-blue-600">
+              Blogs
+            </a>
+            <a href="#contact" className="hover:text-blue-600">
+              Contact
             </a>
           </nav>
           <a
@@ -129,17 +196,78 @@ export default function Home() {
           <AIPropertyFinder />
         </AnimatedSection>
 
+        <AnimatedSection className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Savings comparison</h2>
+          <ul className="mt-3 space-y-1 text-sm text-slate-600">
+            <li>• Compare likely monthly repayments before you apply</li>
+            <li>• See where rate optimization creates real cash-flow relief</li>
+          </ul>
+          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50 text-slate-700">
+                <tr>
+                  <th className="px-5 py-4">Profile</th>
+                  <th className="px-5 py-4">Typical bank average</th>
+                  <th className="px-5 py-4">With SS Finance</th>
+                  <th className="px-5 py-4">Potential savings</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-slate-600">
+                {savingsRows.map((row) => (
+                  <tr key={row.profile}>
+                    <td className="px-5 py-4 font-medium text-slate-800">{row.profile}</td>
+                    <td className="px-5 py-4">{row.bankAverage}</td>
+                    <td className="px-5 py-4">{row.withUs}</td>
+                    <td className="px-5 py-4 font-semibold text-blue-700">{row.saved}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </AnimatedSection>
+
         <AnimatedSection className="border-y border-slate-200 bg-white py-14">
-          <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-3 px-4 sm:px-6 lg:px-8">
-            {bankLogos.map((logo) => (
-              <span
-                key={logo}
-                className="rounded-full border border-slate-200 bg-slate-50 px-5 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-white"
-              >
-                {logo}
-              </span>
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+              Leading Mortgage providers in UAE
+            </p>
+            <div className="logo-marquee mt-6">
+              <div className="logo-marquee-track">
+                {[...bankLogos, ...bankLogos].map((logo, index) => (
+                  <div
+                    key={`${logo.name}-${index}`}
+                    className="flex min-w-[190px] items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm"
+                  >
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                      {logo.mark}
+                    </span>
+                    <span className="text-sm font-semibold text-slate-700">{logo.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Why choose us</h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {authorityStats.map((stat) => (
+              <Card key={stat.label} className="border-slate-200 p-5">
+                <p className="text-3xl font-semibold text-slate-900">{stat.value}</p>
+                <p className="mt-1 text-xs uppercase tracking-wide text-slate-500">{stat.label}</p>
+              </Card>
             ))}
           </div>
+        </AnimatedSection>
+
+        <AnimatedSection id="about" className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">About SS Finance</h2>
+          <ul className="mt-4 space-y-2 text-sm text-slate-600">
+            <li>• Independent mortgage broker focused on UAE home financing.</li>
+            <li>• We compare rates, fees, and lender fit before you apply.</li>
+            <li>• One advisor supports you from eligibility to disbursement.</li>
+          </ul>
         </AnimatedSection>
 
         <AnimatedSection id="how-it-works" className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
@@ -256,6 +384,31 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
+        <AnimatedSection id="team" className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Team</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {teamMembers.map((member) => (
+              <Card key={member.name} className="border-slate-200 p-5">
+                <p className="text-lg font-semibold text-slate-900">{member.name}</p>
+                <p className="mt-1 text-sm text-slate-600">{member.role}</p>
+              </Card>
+            ))}
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection id="blogs" className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Blogs</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {blogHighlights.map((blog) => (
+              <Card key={blog.title} className="border-slate-200 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">{blog.meta}</p>
+                <p className="mt-2 text-lg font-semibold text-slate-900">{blog.title}</p>
+                <p className="mt-2 text-sm text-slate-600">{blog.description}</p>
+              </Card>
+            ))}
+          </div>
+        </AnimatedSection>
+
         <AnimatedSection className="mx-auto w-full max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
           <h2 className="text-center text-3xl font-semibold tracking-tight md:text-4xl">FAQ</h2>
           <div className="mt-10">
@@ -263,11 +416,14 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection id="eligibility" className="mx-auto w-full max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
+        <AnimatedSection
+          id="eligibility"
+          className="mx-auto w-full max-w-5xl px-4 py-14 sm:px-6 lg:px-8"
+        >
           <LeadCaptureForm />
         </AnimatedSection>
 
-        <AnimatedSection className="mx-auto w-full max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <AnimatedSection id="contact" className="mx-auto w-full max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
           <div className="rounded-3xl bg-gradient-to-r from-blue-700 to-blue-500 p-10 text-white shadow-xl md:p-14">
             <h2 className="max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">
               Ready to secure the right mortgage with confidence?

@@ -5,6 +5,17 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { formatAed } from "@/lib/ai";
 
+function formatNumberWithCommas(value: number) {
+  return new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
+function parseNumberInput(value: string) {
+  const digitsOnly = value.replace(/[^\d]/g, "");
+  return digitsOnly ? Number(digitsOnly) : 0;
+}
+
 function monthlyPayment(principal: number, annualRate: number, years: number) {
   const monthlyRate = annualRate / 100 / 12;
   const n = years * 12;
@@ -40,11 +51,11 @@ export function MortgageCalculator() {
             Property value (AED)
           </p>
           <input
-            type="number"
+            type="text"
             min={500000}
             step={10000}
-            value={propertyValue}
-            onChange={(event) => setPropertyValue(Number(event.target.value || 0))}
+            value={formatNumberWithCommas(propertyValue)}
+            onChange={(event) => setPropertyValue(parseNumberInput(event.target.value))}
             className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-slate-800 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
           />
         </label>

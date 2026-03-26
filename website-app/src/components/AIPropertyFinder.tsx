@@ -9,10 +9,15 @@ import { formatAed, getMatchedProperties, runAffordabilitySearch } from "@/lib/a
 import { PropertyCard } from "@/components/PropertyCard";
 
 export function AIPropertyFinder() {
-  const [query, setQuery] = useState("What can I afford with 25k salary?");
+  const [query, setQuery] = useState("What can I afford with 25k salary for an apartment?");
   const [isLoading, setIsLoading] = useState(false);
   const [activeQuery, setActiveQuery] = useState(query);
   const [showMethodology, setShowMethodology] = useState(false);
+  const suggestedQueries = [
+    "What can I afford with 18k salary for a villa?",
+    "Best areas for 2.2M budget",
+    "Townhouse options with 30k salary",
+  ];
 
   const result = useMemo(
     () => runAffordabilitySearch(activeQuery),
@@ -38,23 +43,42 @@ export function AIPropertyFinder() {
           <Input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="What can I afford with 25k salary?"
+            placeholder="Examples: 25k salary apartment in Dubai Marina, 35k villa"
             className="h-14 text-base"
           />
           <Button onClick={handleSearch} className="h-14 shrink-0 px-7">
             Analyze affordability
           </Button>
         </div>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {suggestedQueries.map((suggestion) => (
+            <button
+              key={suggestion}
+              onClick={() => {
+                setQuery(suggestion);
+                setActiveQuery(suggestion);
+              }}
+              className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600 transition-colors hover:bg-white"
+            >
+              {suggestion}
+            </button>
+          ))}
+        </div>
       </Card>
 
       {isLoading ? (
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-blue-100 bg-white p-4 text-sm font-medium text-blue-700 shadow-md">
+            Analyzing your affordability, UAE mortgage limits, and matching inventory...
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
           {[1, 2, 3].map((item) => (
             <div
               key={item}
               className="h-32 animate-pulse rounded-2xl border border-blue-100 bg-white shadow-md"
             />
           ))}
+          </div>
         </div>
       ) : (
         <motion.div
@@ -62,7 +86,7 @@ export function AIPropertyFinder() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="grid gap-4 md:grid-cols-3"
+          className="grid gap-4 md:grid-cols-2 xl:grid-cols-5"
         >
           <Card className="space-y-2">
             <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
@@ -87,6 +111,20 @@ export function AIPropertyFinder() {
             <p className="text-base font-semibold text-slate-900">
               {result.areas.join(" • ")}
             </p>
+          </Card>
+          <Card className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
+              Down Payment Rule
+            </p>
+            <p className="text-base font-semibold text-slate-900">
+              {Math.round(result.downPaymentRatio * 100)}% for {result.propertyType}
+            </p>
+          </Card>
+          <Card className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
+              Max Loan Estimate
+            </p>
+            <p className="text-base font-semibold text-slate-900">{formatAed(result.maxLoan)}</p>
           </Card>
         </motion.div>
       )}

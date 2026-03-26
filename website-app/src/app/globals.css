@@ -30,3 +30,26 @@ html {
 .section-title {
   letter-spacing: -0.02em;
 }
+
+.logo-marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.logo-marquee-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: scroll-logos 26s linear infinite;
+  will-change: transform;
+}
+
+@keyframes scroll-logos {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

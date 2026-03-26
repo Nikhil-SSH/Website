@@ -65,7 +65,7 @@ export function HeroIntro({ trustBadges }: HeroIntroProps) {
         <Card className="p-3 sm:p-4">
           <div className="flex flex-col gap-3 sm:flex-row">
             <Input placeholder="Try: 2-bed apartment with 30k salary" className="h-14 text-base" />
-            <Button className="h-14 px-7">Run AI Search</Button>
+            <Button className="h-14 px-7">Get My Best Mortgage Match</Button>
           </div>
         </Card>
       </motion.div>

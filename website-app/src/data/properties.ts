@@ -1,6 +1,7 @@
 export type Property = {
   id: number;
   title: string;
+  type: "apartment" | "villa" | "townhouse";
   location: string;
   area: string;
   price: number;
@@ -23,6 +24,7 @@ export const properties: Property[] = [
   {
     id: 1,
     title: "Contemporary Waterfront Apartment",
+    type: "apartment",
     location: "Dubai Marina",
     area: "1,180 sq ft",
     price: 2100000,
@@ -34,6 +36,7 @@ export const properties: Property[] = [
   {
     id: 2,
     title: "Premium Skyline Residence",
+    type: "apartment",
     location: "Downtown Dubai",
     area: "1,420 sq ft",
     price: 2950000,
@@ -45,6 +48,7 @@ export const properties: Property[] = [
   {
     id: 3,
     title: "Family Townhouse in Gated Community",
+    type: "townhouse",
     location: "Dubai Hills Estate",
     area: "2,350 sq ft",
     price: 3650000,

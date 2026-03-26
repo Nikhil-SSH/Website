@@ -5,6 +5,9 @@ export type AiResult = {
   budgetMax: number;
   monthlyPayment: number;
   areas: string[];
+  propertyType: "apartment" | "villa" | "townhouse";
+  downPaymentRatio: number;
+  maxLoan: number;
 };
 
 const DEFAULT_SALARY = 25000;
@@ -27,10 +30,26 @@ export function parseSalary(input: string) {
   return DEFAULT_SALARY;
 }
 
+function parsePropertyType(input: string): "apartment" | "villa" | "townhouse" {
+  const value = input.toLowerCase();
+  if (value.includes("villa")) return "villa";
+  if (value.includes("townhouse")) return "townhouse";
+  return "apartment";
+}
+
 export function runAffordabilitySearch(input: string): AiResult {
   const salary = parseSalary(input);
-  const maxMonthlyPayment = clamp(salary * 0.36, 3500, 30000);
-  const maxPropertyValue = Math.round(maxMonthlyPayment * 230);
+  const propertyType = parsePropertyType(input);
+  // UAE-focused deterministic rules: conservative DTI and type-based LTV.
+  const maxMonthlyPayment = clamp(salary * 0.35, 3500, 30000);
+  const ltvByType = {
+    apartment: 0.8,
+    townhouse: 0.75,
+    villa: 0.7,
+  };
+  const downPaymentRatio = 1 - ltvByType[propertyType];
+  const maxLoan = Math.round(maxMonthlyPayment * 230);
+  const maxPropertyValue = Math.round(maxLoan / ltvByType[propertyType]);
   const minPropertyValue = Math.round(maxPropertyValue * 0.82);
   const areaStart = Math.floor((salary / 5000) % suggestedAreas.length);
 
@@ -45,18 +64,34 @@ export function runAffordabilitySearch(input: string): AiResult {
     budgetMax: maxPropertyValue,
     monthlyPayment: Math.round(maxMonthlyPayment),
     areas,
+    propertyType,
+    downPaymentRatio,
+    maxLoan,
   };
 }
 
 export function getMatchedProperties(input: string) {
   const salary = parseSalary(input);
+  const propertyType = parsePropertyType(input);
   const targetPayment = salary * 0.36;
 
   return [...properties]
+    .filter((property) => property.type === propertyType)
     .sort(
       (a, b) =>
         Math.abs(a.monthlyPayment - targetPayment) -
         Math.abs(b.monthlyPayment - targetPayment),
+    )
+    .slice(0, 3)
+    .concat(
+      properties
+        .filter((property) => property.type !== propertyType)
+        .sort(
+          (a, b) =>
+            Math.abs(a.monthlyPayment - targetPayment) -
+            Math.abs(b.monthlyPayment - targetPayment),
+        )
+        .slice(0, 3),
     )
     .slice(0, 3);
 }

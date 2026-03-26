@@ -9,10 +9,30 @@ type PropertyCardProps = {
 };
 
 export function PropertyCard({ property }: PropertyCardProps) {
+  const isBestValue = property.price <= 2300000;
+  const isHighRoi = property.roi >= 6.3;
+
   return (
     <Card className="overflow-hidden p-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className="relative h-52 w-full">
-        <Image src={property.image} alt={property.title} fill className="object-cover" />
+      <div className="relative h-52 w-full overflow-hidden">
+        <Image
+          src={property.image}
+          alt={property.title}
+          fill
+          className="object-cover transition-transform duration-500 hover:scale-105"
+        />
+        <div className="absolute left-3 top-3 flex flex-wrap gap-2">
+          {isBestValue ? (
+            <span className="rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-slate-700">
+              Best value
+            </span>
+          ) : null}
+          {isHighRoi ? (
+            <span className="rounded-full bg-blue-600 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white">
+              High ROI
+            </span>
+          ) : null}
+        </div>
       </div>
       <div className="space-y-4 p-5">
         <div className="flex items-center justify-between gap-3">
