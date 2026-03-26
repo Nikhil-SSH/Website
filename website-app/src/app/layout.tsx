@@ -9,7 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "SS Finance | UAE Mortgage Intelligence",
-  description: "Premium UAE mortgage brokerage with AI-powered comparisons.",
+  description: "Premium UAE mortgage consulatancy with AI-powered comparisons.",
 };
 
 export default function RootLayout({

@@ -11,14 +11,15 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
 const bankLogos = [
-  { name: "Emirates NBD", mark: "EN" },
-  { name: "Mashreq", mark: "MQ" },
-  { name: "ADCB", mark: "AD" },
-  { name: "RAKBANK", mark: "RK" },
-  { name: "HSBC", mark: "HB" },
-  { name: "FAB", mark: "FB" },
+  { name: "Emirates NBD", mark: "ENBD" },
+  { name: "Mashreq", mark: "MASHREQ" },
+  { name: "ADCB", mark: "ADCB" },
+  { name: "RAK BANK", mark: "RAK" },
+  { name: "CBD", mark: "CBD" },
+  { name: "FAB", mark: "FAB" },
+  { name: "ADIB", mark: "ADIB" },
 ];
-const trustBadges = ["Rates from 3.79%", "Pre-approval in 24-48h", "20+ partner banks"];
+const trustBadges = ["Rates from 3.79%", "Pre-approval in 24-48h", "10+ partner banks"];
 
 const faqs = [
   {
@@ -26,12 +27,21 @@ const faqs = [
     answer: "Most clients receive pre-approval guidance within 24 hours after submitting documents.",
   },
   {
-    question: "Do you charge brokerage fees?",
-    answer: "No hidden fees. We are transparent about every cost before you proceed.",
+    question: "Do you charge any brokerage fees?",
+    answer: "No Fees. We are transparent about every cost before you proceed.",
   },
   {
     question: "Can expats apply for UAE mortgages?",
     answer: "Yes. We support both residents and non-residents with bank-matched options.",
+  },
+  {
+    question: "I am a non-resident, can I apply for a UAE mortgage?",
+    answer: "Yes. We support both residents and non-residents with bank-matched options.",
+  },
+  
+  {
+    question: "How can I apply for a UAE mortgage?",
+    answer: "You can apply for a UAE mortgage by following these steps: 1. Contact Us - We will do the rest, while you rest",
   },
 ];
 
@@ -128,8 +138,8 @@ const blogHighlights = [
 
 export default function Home() {
   return (
-    <div className="bg-gradient-to-b from-slate-50 via-white to-white text-slate-900">
-      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
+    <div className="bg-gradient-to-b from-[#f4f8ff] via-[#fbfdff] to-[#f7fbff] text-slate-900">
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex h-28 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center">
             <Image
@@ -173,7 +183,7 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="relative w-full overflow-hidden border-b border-slate-200/60 py-20 md:py-24">
+        <section className="relative w-full overflow-hidden border-b border-blue-100/70 py-20 md:py-24">
           <HeroVideo />
           <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
             <HeroIntro trustBadges={trustBadges} />
@@ -196,13 +206,13 @@ export default function Home() {
           <AIPropertyFinder />
         </AnimatedSection>
 
-        <AnimatedSection className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <AnimatedSection className="soft-section mx-auto w-full max-w-7xl rounded-3xl px-4 py-24 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Savings comparison</h2>
           <ul className="mt-3 space-y-1 text-sm text-slate-600">
             <li>• Compare likely monthly repayments before you apply</li>
             <li>• See where rate optimization creates real cash-flow relief</li>
           </ul>
-          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 shadow-[0_12px_34px_rgba(15,23,42,0.08)]">
             <table className="w-full text-left text-sm">
               <thead className="bg-slate-50 text-slate-700">
                 <tr>
@@ -226,7 +236,7 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection className="border-y border-slate-200 bg-white py-14">
+        <AnimatedSection className="border-y border-blue-100/70 bg-gradient-to-r from-blue-50/55 via-white to-cyan-50/45 py-14">
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
               Leading Mortgage providers in UAE
@@ -236,7 +246,7 @@ export default function Home() {
                 {[...bankLogos, ...bankLogos].map((logo, index) => (
                   <div
                     key={`${logo.name}-${index}`}
-                    className="flex min-w-[190px] items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm"
+                    className="flex min-w-[190px] items-center gap-3 rounded-xl border border-slate-200 bg-white/90 px-4 py-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
                   >
                     <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
                       {logo.mark}
@@ -261,7 +271,7 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection id="about" className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <AnimatedSection id="about" className="soft-section mx-auto w-full max-w-7xl rounded-3xl px-4 py-24 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">About SS Finance</h2>
           <ul className="mt-4 space-y-2 text-sm text-slate-600">
             <li>• Independent mortgage broker focused on UAE home financing.</li>
@@ -320,7 +330,7 @@ export default function Home() {
 
         <AnimatedSection id="rates" className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Rates comparison</h2>
-          <div className="mt-8 overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-lg">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-blue-100/80 bg-white/95 shadow-[0_12px_34px_rgba(37,99,235,0.12)]">
             <table className="w-full text-left text-sm">
               <thead className="bg-blue-50 text-slate-700">
                 <tr>
@@ -396,7 +406,7 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection id="blogs" className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <AnimatedSection id="blogs" className="soft-section mx-auto w-full max-w-7xl rounded-3xl px-4 py-24 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Blogs</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {blogHighlights.map((blog) => (
@@ -424,11 +434,13 @@ export default function Home() {
         </AnimatedSection>
 
         <AnimatedSection id="contact" className="mx-auto w-full max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-r from-blue-700 to-blue-500 p-10 text-white shadow-xl md:p-14">
-            <h2 className="max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">
+          <div className="relative overflow-hidden rounded-3xl border border-blue-300/25 bg-gradient-to-r from-[#0f172a] via-[#13223d] to-[#1f2f55] p-10 text-white shadow-[0_22px_52px_rgba(15,23,42,0.45)] md:p-14">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.18),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(124,58,237,0.2),transparent_38%)]" />
+            <div className="relative z-10">
+            <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-white md:text-5xl">
               Ready to secure the right mortgage with confidence?
             </h2>
-            <p className="mt-4 max-w-2xl text-blue-100">
+            <p className="mt-4 max-w-2xl text-slate-100">
               Start with a quick eligibility check and receive tailored bank options in minutes.
             </p>
             <a
@@ -437,6 +449,7 @@ export default function Home() {
             >
               Check Eligibility
             </a>
+            </div>
           </div>
         </AnimatedSection>
       </main>

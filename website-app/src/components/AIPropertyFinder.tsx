@@ -9,12 +9,12 @@ import { formatAed, getMatchedProperties, runAffordabilitySearch } from "@/lib/a
 import { PropertyCard } from "@/components/PropertyCard";
 
 export function AIPropertyFinder() {
-  const [query, setQuery] = useState("What can I afford with 25k salary for an apartment?");
+  const [query, setQuery] = useState("Where in Dubai can I afford an apartment with a salary of 25k?");
   const [isLoading, setIsLoading] = useState(false);
   const [activeQuery, setActiveQuery] = useState(query);
   const [showMethodology, setShowMethodology] = useState(false);
   const suggestedQueries = [
-    "What can I afford with 18k salary for a villa?",
+    "With an income of 18K per month, can i buy a townhouse in Dubai?",
     "Best areas for 2.2M budget",
     "Townhouse options with 30k salary",
   ];

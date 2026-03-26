@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f8fbff;
   --foreground: #0f172a;
 }
 
@@ -12,7 +12,9 @@
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at 10% -20%, rgba(37, 99, 235, 0.08), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.07), transparent 26%),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
@@ -43,6 +45,14 @@ html {
   width: max-content;
   animation: scroll-logos 26s linear infinite;
   will-change: transform;
+}
+
+.soft-section {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.04), rgba(124, 58, 237, 0.03));
+}
+
+.navy-section {
+  background: linear-gradient(135deg, #0f172a 0%, #13223d 48%, #1f2f55 100%);
 }
 
 @keyframes scroll-logos {

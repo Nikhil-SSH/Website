@@ -19,8 +19,8 @@ export function Button({
 
   const variantClasses =
     variant === "primary"
-      ? "bg-[length:200%_200%] bg-[linear-gradient(135deg,#2563eb_0%,#1d4ed8_50%,#2563eb_100%)] text-white hover:bg-[position:100%_50%]"
-      : "border border-blue-200 bg-white text-blue-700 hover:bg-blue-50";
+      ? "bg-[length:220%_220%] bg-[linear-gradient(135deg,#2563EB_0%,#7C3AED_55%,#06B6D4_100%)] text-white shadow-[0_10px_24px_rgba(37,99,235,0.24)] hover:bg-[position:100%_50%] hover:shadow-[0_14px_28px_rgba(124,58,237,0.26)]"
+      : "border border-slate-200 bg-gradient-to-r from-white to-blue-50/60 text-slate-700 hover:border-blue-200 hover:text-blue-700";
 
   return (
     <button className={`${baseClasses} ${variantClasses} ${className}`} {...props}>

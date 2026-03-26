@@ -80,7 +80,7 @@ export function LeadCaptureForm() {
   return (
     <Card>
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
-        Free callback
+        Request a callback
       </p>
       <h3 className="mt-2 text-2xl font-semibold text-slate-900">Get tailored mortgage options</h3>
       <div className="mt-4 overflow-hidden rounded-full bg-slate-100">
@@ -134,7 +134,7 @@ export function LeadCaptureForm() {
           ) : null}
         </div>
         <Button className="w-full" type="submit">
-          Request callback
+          Request a callback
         </Button>
       </form>
     </Card>
